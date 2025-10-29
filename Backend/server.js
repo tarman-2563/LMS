@@ -11,6 +11,14 @@ const adminRouter = require("./routes/adminRoutes");
 
 const app = express();
 app.use(express.json());
+// CORS for frontend dev server
+const cors = require('cors');
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
+    allowedHeaders: ['Content-Type','Authorization'],
+    credentials: true
+}));
 
 connectToDB();
 
@@ -21,7 +29,7 @@ app.use('/api/courses/:courseId', assignmentRouter);
 app.use('/api/assignments/:assignmentId/submissions', submissionRouter);
 app.use('/api/admin', adminRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3838;
 
 app.get("/health",(req,res)=>{
     res.status(200).send("Server is up and running");
