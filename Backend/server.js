@@ -11,14 +11,28 @@ const adminRouter = require("./routes/adminRoutes");
 
 const app = express();
 app.use(express.json());
-// CORS for frontend dev server
+
 const cors = require('cors');
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://frontend-deploy-teal.vercel.app'
+];
+
 app.use(cors({
-    origin: 'http://localhost:5173',
-    methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
-    allowedHeaders: ['Content-Type','Authorization'],
-    credentials: true
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
+
 
 connectToDB();
 
