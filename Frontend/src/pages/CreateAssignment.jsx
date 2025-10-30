@@ -18,17 +18,18 @@ export default function CreateAssignment(){
       await API.post(`/courses/${courseId}/assignments`, { title, description, deadline: dueDate });
       alert('Assignment created successfully!');
       nav(`/courses/${courseId}`);
-    } catch(err){ 
+    } 
+    catch(err){ 
       alert(err.response?.data?.message || 'Error creating assignment'); 
       setCreating(false);
     }
-  };
+  }
 
   const getMinDate = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return today.toISOString().split('T')[0];
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50">

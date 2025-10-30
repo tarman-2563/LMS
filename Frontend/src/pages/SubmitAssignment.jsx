@@ -14,14 +14,15 @@ export default function SubmitAssignment(){
   useEffect(() => {
     const fetchAssignment = async () => {
       try {
-        // Backend requires courseId for assignment lookup; proceed without details if unavailable
         setAssignment(null);
-      } catch(err){
+      } 
+      catch(err){
         console.error(err);
-      } finally {
+      } 
+      finally {
         setLoading(false);
       }
-    };
+    }
     if(id) fetchAssignment();
   }, [id]);
 
@@ -32,20 +33,20 @@ export default function SubmitAssignment(){
     const fd = new FormData();
     fd.append('file', file);
     try {
-  const res = await API.post(`/assignments/${id}/submissions`, fd, { headers: { 'Content-Type': 'multipart/form-data' }});
-      
+      const res = await API.post(`/assignments/${id}/submissions`, fd, { headers: { 'Content-Type': 'multipart/form-data' }});
       if (res.data.certificate) {
         alert(`Assignment submitted successfully!\nCertificate Number: ${res.data.certificate.certificateNumber}\nCertificate issued on: ${new Date(res.data.certificate.issuedAt).toLocaleDateString()}`);
       } else {
         alert('Assignment submitted successfully!');
       }
       nav(-1);
-    } catch(err){ 
+    } 
+    catch(err){ 
       console.error('Submission error:', err);
       alert(err.response?.data?.message || 'Error submitting assignment'); 
       setSubmitting(false);
     }
-  };
+  }
 
   const formatFileSize = (bytes) => {
     if (bytes === 0) return '0 Bytes';
@@ -53,7 +54,7 @@ export default function SubmitAssignment(){
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-  };
+  }
 
   if (loading) {
     return (
@@ -233,5 +234,5 @@ export default function SubmitAssignment(){
         </div>
       </div>
     </div>
-  );
+  )
 }

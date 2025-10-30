@@ -22,7 +22,7 @@ export default function NavBar(){
               <div className="w-8 h-8 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-lg flex items-center justify-center">
                 <i className="fas fa-graduation-cap text-white text-sm"></i>
               </div>
-              <span className="text-xl font-bold text-gray-900">EduNexus</span>
+              <span className="text-xl font-bold text-gray-900">LMS</span>
             </Link>
             <div className="hidden md:flex space-x-6">
               <Link to="/courses" className="text-gray-700 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">

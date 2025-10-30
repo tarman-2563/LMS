@@ -71,11 +71,12 @@ export default function Courses(){
     try {
       await API.post(`/courses/${id}/enroll`);
       alert('Successfully enrolled!');
-      fetch(searchTerm, selectedCategory, selectedLevel, sortBy); // Refresh with current filters
-    } catch(err) {
+      fetch(searchTerm, selectedCategory, selectedLevel, sortBy); 
+    } 
+    catch(err) {
       alert(err.response?.data?.message || 'Error enrolling');
     }
-  };
+  }
 
   if (loading) {
     return (
@@ -97,13 +98,11 @@ export default function Courses(){
     <div className="min-h-screen bg-gray-50">
       <NavBar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">All Courses</h1>
           <p className="text-gray-600">Discover and enroll in courses to enhance your skills</p>
         </div>
 
-        {/* Search and Filter */}
         <div className="mb-8">
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <div className="flex flex-col sm:flex-row gap-4">
@@ -192,7 +191,6 @@ export default function Courses(){
           </div>
         </div>
 
-        {/* Search Results Info */}
         {(searchTerm || selectedCategory !== 'All Categories' || selectedLevel !== 'All Levels') && (
           <div className="mb-6">
             <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
@@ -223,7 +221,6 @@ export default function Courses(){
           </div>
         )}
 
-        {/* Courses Grid */}
         {courses.length === 0 ? (
           <div className="text-center py-12">
             <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -236,12 +233,10 @@ export default function Courses(){
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {courses.map(course => (
               <div key={course._id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
-                {/* Course Image */}
                 <div className="h-48 bg-gradient-to-br from-teal-500 to-indigo-600 flex items-center justify-center">
                   <i className="fas fa-book text-6xl text-white opacity-80"></i>
                 </div>
                 
-                {/* Course Content */}
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">{course.title}</h3>
@@ -249,8 +244,6 @@ export default function Courses(){
                   </div>
                   
                   <p className="text-gray-600 text-sm mb-4 line-clamp-3">{course.description}</p>
-                  
-                  {/* Course Meta Info */}
                   <div className="flex items-center gap-2 mb-4">
                     <span className="bg-teal-100 text-teal-800 text-xs font-medium px-2 py-1 rounded-full">
                       {course.category || 'Programming'}
@@ -264,8 +257,6 @@ export default function Courses(){
                       </span>
                     )}
                   </div>
-                  
-                  {/* Instructor */}
                   <div className="flex items-center mb-4">
                     <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
                       <i className="fas fa-user text-gray-600 text-sm"></i>
@@ -276,9 +267,6 @@ export default function Courses(){
                     </div>
                   </div>
                   
-                  
-                  
-                  {/* Actions */}
                   <div className="flex gap-2">
                     <Link 
                       to={`/courses/${course._id}`}

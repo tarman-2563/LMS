@@ -18,18 +18,19 @@ export default function CreateCourse(){
       await API.post('/courses', { title, description, instructor: user?._id });
       alert('Course created successfully!');
       nav('/courses');
-    } catch(err) { 
+    } 
+    catch(err) { 
       alert(err.response?.data?.message || 'Error creating course'); 
-    } finally {
+    } 
+    finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 to-cyan-50">
       <NavBar />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
         <div className="mb-8">
           <div className="flex items-center mb-4">
             <div className="bg-teal-100 rounded-full p-3 mr-4">
@@ -42,7 +43,6 @@ export default function CreateCourse(){
           </div>
         </div>
 
-        {/* Form */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
           <div className="bg-gradient-to-r from-teal-600 to-cyan-600 px-8 py-6">
             <h2 className="text-xl font-bold text-white">Course Information</h2>
@@ -79,7 +79,6 @@ export default function CreateCourse(){
               />
             </div>
 
-            {/* Course Preview */}
             {(title || description) && (
               <div className="bg-gray-50 rounded-lg p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-3">Course Preview</h3>
@@ -94,7 +93,6 @@ export default function CreateCourse(){
               </div>
             )}
 
-            {/* Action Buttons */}
             <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
               <button
                 type="button"
@@ -125,7 +123,6 @@ export default function CreateCourse(){
           </div>
         </div>
 
-        {/* Tips */}
         <div className="mt-6 bg-teal-50 border border-teal-200 rounded-lg p-6">
           <div className="flex items-start">
             <i className="fas fa-lightbulb text-teal-600 mr-3 mt-1"></i>

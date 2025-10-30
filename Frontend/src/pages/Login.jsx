@@ -15,12 +15,14 @@ export default function Login(){
     try {
       await login(email,password);
       nav('/');
-    } catch(err) {
+    } 
+    catch(err) {
       alert(err.response?.data?.message || 'Login failed');
-    } finally {
+    } 
+    finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 to-cyan-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -124,5 +126,5 @@ export default function Login(){
         </div>
       </div>
     </div>
-  );
+  )
 }

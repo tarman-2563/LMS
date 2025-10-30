@@ -14,12 +14,14 @@ export default function Profile() {
       setLoading(true);
       const profileRes = await API.get('/auth/profile');
       setProfileData({ user: profileRes.data.user });
-    } catch(err) { 
+    } 
+    catch(err) { 
       console.error(err); 
-    } finally {
+    } 
+    finally {
       setLoading(false);
     }
-  };
+  }
 
   useEffect(() => { fetchProfileData(); }, []);
 
@@ -43,14 +45,12 @@ export default function Profile() {
     <div className="min-h-screen bg-gray-50">
       <NavBar />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">My Profile</h1>
           <p className="text-gray-600">Manage your account and view your learning progress</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Profile Info */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <div className="text-center">
@@ -79,7 +79,6 @@ export default function Profile() {
             </div>
           </div>
 
-          {/* Stats Section */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">
@@ -87,7 +86,6 @@ export default function Profile() {
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {user?.role === 'student' ? (
-                  // Student Stats
                   <>
                     <div className="text-center">
                       <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-2">
@@ -122,7 +120,6 @@ export default function Profile() {
                     </div>
                   </>
                 ) : (
-                  // Instructor Stats
                   <>
                     <div className="text-center">
                       <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-2">
@@ -160,7 +157,6 @@ export default function Profile() {
               </div>
             </div>
 
-            {/* Recent Activity */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
               
@@ -189,7 +185,6 @@ export default function Profile() {
               )}
             </div>
 
-            {/* Quick Actions */}
             <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
               {user?.role === 'student' ? (
                 <>

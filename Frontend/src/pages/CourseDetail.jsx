@@ -18,16 +18,17 @@ export default function CourseDetail(){
       const res = await API.get(`/courses/${id}`);
       setCourse(res.data);
       setLectures(res.data.lectures || []);
-    } catch(err){ 
+    } 
+    catch(err){ 
       console.error(err); 
-    } finally {
+    } 
+    finally {
       setLoading(false);
     }
-  };
+  }
 
-  useEffect(()=>{ fetch(); },[id]);
+  useEffect(()=>{ fetch(); },[id])
 
-  // Discussions/ratings not supported by backend; omitted
 
   if (loading) {
     return (
@@ -49,7 +50,6 @@ export default function CourseDetail(){
     <div className="min-h-screen bg-gray-50">
       <NavBar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Back Button */}
         <Link 
           to="/courses" 
           className="inline-flex items-center text-teal-600 hover:text-teal-800 mb-6 transition-colors"
@@ -58,7 +58,6 @@ export default function CourseDetail(){
           Back to courses
         </Link>
 
-        {/* Course Header */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
             <div className="flex-1">
@@ -77,7 +76,6 @@ export default function CourseDetail(){
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-8">
           <div className="border-b border-gray-200">
             <nav className="flex space-x-8 px-6">
@@ -110,7 +108,6 @@ export default function CourseDetail(){
           </div>
 
           <div className="p-6">
-            {/* Lectures Tab */}
             {activeTab === 'lectures' && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Course Lectures</h3>
@@ -153,9 +150,6 @@ export default function CourseDetail(){
               </div>
             )}
 
-            
-
-            {/* Instructor Tools Tab */}
             {activeTab === 'instructor' && user?.role === 'Instructor' && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Instructor Tools</h3>
@@ -183,7 +177,6 @@ export default function CourseDetail(){
         </div>
       </div>
       
-      {/* Ratings not supported by backend; no rating modal */}
     </div>
-  );
+  )
 }

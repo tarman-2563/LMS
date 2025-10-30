@@ -11,12 +11,14 @@ export default function AdminPanel(){
       setLoading(true);
       const res = await API.get('/admin/users');
       setUsers(res.data);
-    } catch(err){ 
+    } 
+    catch(err){ 
       console.error(err); 
-    } finally {
+    } 
+    finally {
       setLoading(false);
     }
-  };
+  }
 
   useEffect(()=>{ fetch(); },[]);
 
@@ -25,10 +27,11 @@ export default function AdminPanel(){
       await API.put(`/admin/users/${id}/role`, { role });
       fetch();
       alert('User role updated successfully!');
-    } catch(err){ 
+    } 
+    catch(err){ 
       alert('Error updating user role'); 
     }
-  };
+  }
 
   const del = async (id) => {
     if(!confirm('Are you sure you want to delete this user? This action cannot be undone.')) return;
@@ -36,10 +39,11 @@ export default function AdminPanel(){
       await API.delete(`/admin/users/${id}`); 
       fetch(); 
       alert('User deleted successfully!');
-    } catch(err){ 
+    } 
+    catch(err){ 
       alert('Error deleting user'); 
     }
-  };
+  }
 
   if (loading) {
     return (
@@ -54,7 +58,7 @@ export default function AdminPanel(){
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -198,5 +202,5 @@ export default function AdminPanel(){
         </div>
       </div>
     </div>
-  );
+  )
 }

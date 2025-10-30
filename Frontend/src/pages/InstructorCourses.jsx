@@ -13,12 +13,14 @@ export default function InstructorCourses(){
       const res = await API.get('/courses');
       const all = Array.isArray(res.data) ? res.data : (res.data.courses || []);
       setCourses(all);
-    } catch(err){
+    } 
+    catch(err){
       console.error(err);
-    } finally {
+    } 
+    finally {
       setLoading(false);
     }
-  };
+  }
 
   useEffect(()=>{ fetch(); },[]);
 

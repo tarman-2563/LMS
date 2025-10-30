@@ -15,7 +15,6 @@ export default function Submissions() {
   const [grading, setGrading] = useState(false);
   const [filter, setFilter] = useState('all');
   const navigate = useNavigate();
-  // derive backend origin from API baseURL (e.g. http://localhost:5000/api -> http://localhost:5000)
   const API_BASE = (API.defaults?.baseURL || import.meta.env.VITE_API_URL || '').replace(/\/api\/?$/, '');
 
   const fetchSubmissions = async () => {
@@ -35,7 +34,7 @@ export default function Submissions() {
       const list = Array.isArray(res.data) ? res.data : [];
       const processedSubmissions = list.map(submission => ({
         id: submission._id,
-        student: submission.studentId, // populated with name/email per backend
+        student: submission.studentId, 
         fileUrl: submission.submissonUrl,
         submittedAt: submission.submittedAt,
         grade: submission.grade,
@@ -126,7 +125,6 @@ export default function Submissions() {
     <div className="min-h-screen bg-gray-50">
       <NavBar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
@@ -143,7 +141,6 @@ export default function Submissions() {
           </div>
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <div className="flex items-center">
@@ -200,7 +197,6 @@ export default function Submissions() {
           </div>
         </div>
 
-        {/* Filter */}
         <div className="mb-6">
           <div className="flex space-x-4">
             {['all', 'ungraded', 'graded', 'late'].map((filterType) => (
@@ -219,7 +215,6 @@ export default function Submissions() {
           </div>
         </div>
 
-        {/* Submissions List */}
         {filteredSubmissions.length === 0 ? (
           <div className="text-center py-12">
             <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -300,7 +295,6 @@ export default function Submissions() {
         )}
       </div>
 
-      {/* Grading Modal */}
       {gradingModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl p-6 w-full max-w-md mx-4">

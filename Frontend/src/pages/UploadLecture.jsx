@@ -23,11 +23,12 @@ export default function UploadLecture(){
       await API.post(`/courses/${courseId}/lectures`, fd, { headers: { 'Content-Type': 'multipart/form-data' }});
       alert('Lecture uploaded successfully!');
       nav(`/courses/${courseId}`);
-    } catch(err){ 
+    } 
+    catch(err){ 
       alert(err.response?.data?.message || 'Upload error'); 
       setUploading(false);
     }
-  };
+  }
 
   const formatFileSize = (bytes) => {
     if (bytes === 0) return '0 Bytes';
@@ -189,5 +190,5 @@ export default function UploadLecture(){
         </div>
       </div>
     </div>
-  );
+  )
 }
